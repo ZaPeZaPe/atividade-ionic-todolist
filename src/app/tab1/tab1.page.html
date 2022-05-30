@@ -1,0 +1,85 @@
+<ion-header>
+<ion-toolbar>
+  <ion-title> TO-DO IONIC </ion-title>
+</ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-card>
+  <ion-item>
+    <ion-label>Nome da tarefa: </ion-label>
+    <ion-textarea
+      [(ngModel)]="taskName"
+      placeholder="Ex: Fazer atividade de André..."
+    ></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon name="reader-outline" slot="start"></ion-icon>
+    <ion-label>Description: </ion-label>
+    <ion-textarea
+      [(ngModel)]="taskDescription"
+      placeholder="Ex: Fazer 10 códigos de sequência fibonacci diferentes..."
+    ></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-icon name="calendar-outline" slot="start"></ion-icon>
+    <ion-label>Due Date: </ion-label>
+    <ion-datetime
+      [(ngModel)]="taskDueDate"
+      displayFormat="D MMM YYYY H:mm"
+    ></ion-datetime>
+  </ion-item>
+
+  <ion-button class="ion-margin" expand="block" (click)="addTask()"
+    >Salvar Tarefa</ion-button
+  >
+</ion-card>
+
+<ion-grid class="ion-margin">
+  <ion-row>
+    <ion-col>#</ion-col>
+    <ion-col>Name</ion-col>
+    <ion-col>Description</ion-col>
+    <ion-col>Due Date</ion-col>
+    <ion-col>Delete</ion-col>
+  </ion-row>
+  <ion-row *ngFor="let task of todoList; index as i">
+    <ion-col>{{ i + 1 }}</ion-col>
+    <ion-col>{{ task.taskName }}</ion-col>
+    <ion-col>{{ task.taskDescription }}</ion-col>
+    <ion-col
+      ><ion-label
+        >{{ task.taskDueDate | date:'dd/MM/yyyy hh:mm' }}
+      </ion-label></ion-col
+    >
+    <ion-col>
+      <ion-icon name="trash-outline"></ion-icon>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<!-- <ion-card *ngFor="let item of todoList" class="ion-margin">
+  <ion-card-header>
+    <ion-card-subtitle> {{ task.itemDescription }} </ion-card-subtitle>
+    <ion-item>
+      <ion-label> {{ task.itemName }} </ion-label>
+    </ion-item>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-label>Due {{ task.itemDueDate | date:'fullDate' }} </ion-label>
+  </ion-card-content>
+
+  <ion-row>
+    
+  </ion-row>
+</ion-card>
+-->
+<!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="addTask()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab> -->
+</ion-content>
