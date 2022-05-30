@@ -17,13 +17,29 @@ export class Tab1Page {
 
   constructor() {}
 
+  verificarNull() {
+    if (
+      this.taskName == null ||
+      this.taskDescription == null ||
+      this.taskDueDate == null
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  delete(index) {
+    this.todoList.splice(index, 1);
+  }
+
   addTask() {
-    this.taskObject = {
-      taskName: this.taskName,
-      taskDescription: this.taskDescription,
-      taskDueName: new Date(this.taskDueDate),
-    };
-    console.log(this.taskObject);
-    this.todoList.push(this.taskObject);
+    if (!this.verificarNull()) {
+      this.taskObject = {
+        taskName: this.taskName,
+        taskDescription: this.taskDescription,
+        taskDueDate: new Date(this.taskDueDate),
+      };
+      this.todoList.push(this.taskObject);
+    }
   }
 }
