@@ -46,12 +46,14 @@
       <ion-col>Name</ion-col>
       <ion-col>Description</ion-col>
       <ion-col>Due Date</ion-col>
-      <ion-col>Delete</ion-col>
+      <ion-col>Options</ion-col>
     </ion-row>
-    <ion-row *ngFor="let task of todoList; index as i">
+    <ion-row *ngFor="let task of todoList; index as i;">
       <ion-col>{{ i + 1 }}</ion-col>
-      <ion-col>{{ task.taskName }}</ion-col>
-      <ion-col>{{ task.taskDescription }}</ion-col>
+      <ion-col *ngIf="!clicou">{{ task.taskName }}</ion-col>
+      <ion-textarea *ngIf="clicou"></ion-textarea>
+      <ion-col *ngIf="!clicou">{{ task.taskName }}</ion-col>
+      <ion-textarea *ngIf="clicou"></ion-textarea>
       <ion-col
         ><ion-label
           >{{ task.taskDueDate | date:'dd/MM/yyyy HH:mm' }}
@@ -59,6 +61,9 @@
       >
       <ion-col (click)="delete(i)">
         <ion-icon name="trash-outline"></ion-icon>
+      </ion-col>
+      <ion-col (click)="edit(i)">
+        <ion-icon name="pencil-outline"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-grid>
